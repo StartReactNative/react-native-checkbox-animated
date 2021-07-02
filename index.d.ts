@@ -61,7 +61,7 @@ declare module "react-native-checkbox-animated" {
         /**
          *  border width of checkbox. Default = 1
          */
-        borderWidth?: boolean;
+        borderWidth?: number;
 
         /**
          *  Specify the position where the checkbox will be rendered. Default = left
@@ -127,7 +127,7 @@ declare module "react-native-checkbox-animated" {
         /**
          *  Replace the checkmark for your custom mark.
          */
-        customMarker?: () => React.ReactNode;
+        customMarker?: React.ReactNode;
     }
 
     class CheckBox extends Component<CheckBoxProps> { }
