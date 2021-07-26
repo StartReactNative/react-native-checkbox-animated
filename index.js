@@ -10,7 +10,7 @@ import {
 
 export default class CheckBox extends React.Component {
     state = { checked: this.props.checked }
-    animationScale = new Animated.Value(this.props.checked ? 1 : 0);
+    animationScale = new Animated.Value(this.props.checked ? 1 : (this.props.showMarkerOnUnCheckedState ? 1 : 0));
     animationLeft = new Animated.Value(
         this.state.checked ? 0 : -this.props.size
     );
@@ -23,10 +23,11 @@ export default class CheckBox extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         const { animationType, checked } = this.props;
 
-        if (animationType === "scale") this.animateScale(!checked);
-        else if (animationType === "left") this.animateLeft(!checked);
-        else this.animateReveal(!checked);
-
+        if (!this.props.showMarkerOnUnCheckedState) {
+            if (animationType === "scale") this.animateScale(!checked);
+            else if (animationType === "left") this.animateLeft(!checked);
+            else this.animateReveal(!checked);
+        }
         if (checked !== prevProps.checked) this.setState({ checked })
     }
 
@@ -35,9 +36,11 @@ export default class CheckBox extends React.Component {
 
         onValueChange(!this.state.checked);
 
-        if (animationType === "scale") this.animateScale(this.state.checked);
-        else if (animationType === "left") this.animateLeft(this.state.checked);
-        else this.animateReveal(this.state.checked);
+        if (!this.props.showMarkerOnUnCheckedState) {
+            if (animationType === "scale") this.animateScale(this.state.checked);
+            else if (animationType === "left") this.animateLeft(this.state.checked);
+            else this.animateReveal(this.state.checked);
+        }
     };
 
     animateScale = (checked) => {
