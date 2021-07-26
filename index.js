@@ -154,6 +154,7 @@ export default class CheckBox extends React.Component {
 
         return (
             <TouchableOpacity
+                disabled={this.props.disabled}
                 onPress={() => {
                     this.setState({ checked: !this.state.checked })
                     this._onValueChange(!this.state.checked)

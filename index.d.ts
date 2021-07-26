@@ -53,6 +53,8 @@ declare module "react-native-checkbox-animated" {
          */
         checkedBorderColor?: string;
 
+        disabled?: boolean;
+
         /**
          *  Specify the color of checkbox's border when it's not checked. Default = transparent
          */
